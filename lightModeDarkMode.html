@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graphics</title>
+  </head>
+  <body>
+    <div class="box flex">
+      <h1 id="modeText">Light</h1>
+    </div>
+    <div class="box flex">
+      <button id="modeButton" style="background-color: transparent">
+        Switch to Dark Mode
+      </button>
+    </div>
+    <div class="box flex">
+      <!-- canvas -->
+      <div class="item">
+        <h3>CANVAS</h3>
+        <canvas id="canvas" width="50" height="50"></canvas>
+      </div>
+
+      <!-- svg -->
+      <div class="item">
+        <h3>SVG</h3>
+        <svg width="50" height="50">
+          <rect x="0" y="0" width="50" height="50" fill-opacity="0" />
+          <line
+            x1="25"
+            y1="0"
+            x2="25"
+            y2="50"
+            style="stroke: red; stroke-width: 10"
+          />
+          <line
+            x1="0"
+            y1="25"
+            x2="50"
+            y2="25"
+            style="stroke: red; stroke-width: 10"
+          />
+        </svg>
+      </div>
+
+      <!-- jpg -->
+      <div class="item">
+        <h3>JPG</h3>
+        <img src="redPlusTransparent.jpg" width="50" height="50" />
+      </div>
+
+      <!-- png -->
+      <div class="item">
+        <h3>PNG</h3>
+        <img src="redPlusTransparent.png" width="50" height="50" />
+      </div>
+
+      <!-- gif -->
+      <div class="item">
+        <h3>GIF</h3>
+        <img src="redPlusTransparent.gif" width="50" height="50" />
+      </div>
+    </div>
+
+    <script>
+      // draw canvas +
+      let canvas = document.getElementById("canvas");
+      let context = canvas.getContext("2d");
+      let centerX = canvas.width / 2;
+      let centerY = canvas.height / 2;
+      context.fillStyle = "transparent";
+      context.fillRect(0, 0, 50, 50);
+      context.fillStyle = "red";
+      context.fillRect(centerX - 5, 0, 10, 50);
+      context.fillRect(0, centerY - 5, 50, 10);
+
+      // wire up light mode / dark mode toggle
+      let lightOn = true;
+      let body = document.getElementsByTagName("body")[0];
+      let modeButton = document.getElementById("modeButton");
+      let modeText = document.getElementById("modeText");
+
+      modeButton.addEventListener("click", () => {
+        if (lightOn) {
+          body.classList.add("darkMode");
+          body.classList.remove("lightMode");
+
+          modeButton.innerText= "Switch to Light Mode";
+          modeButton.classList.add("darkMode");
+          modeButton.classList.remove("lightMode");
+
+          modeText.innerText = "Dark";
+          lightOn = false;
+        } else {
+          body.classList.add("lightMode");
+          body.classList.remove("darkMode");
+
+          modeButton.innerText= "Switch to Dark Mode";
+          modeButton.classList.add("lightMode");
+          modeButton.classList.remove("darkMode");
+
+          modeText.innerText = "Light";
+          lightOn = true;
+        }
+      });
+    </script>
+
+    <style>
+      .darkMode {
+        color: white;
+        background-color: black;
+      }
+      .lightMode {
+        color: black;
+        background-color: white;
+      }
+      .box.flex {
+        display: flex;
+        justify-content: center;
+      }
+      .item {
+        padding: 50px;
+      }
+      body {
+        text-align: center;
+      }
+    </style>
+  </body>
+</html>

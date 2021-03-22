@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graphics</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/csshake/1.5.3/csshake.min.css"
+      integrity="sha512-RliK2gk03WxUELn57ddjWLhEfhUiOZ85VvWLImFy8A7FOPMkF4Z9YGQ3VKX5jpwkEerAL6I0nC+JNeCPrxWBTw=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="box flex">
+        <div class="item">
+          <button id="shakeButton">Shake Screen</button>
+        </div>
+      </div>
+      <div class="box flex">
+        <!-- canvas -->
+        <div class="item">
+          <h3>CANVAS</h3>
+          <canvas
+            id="canvas"
+            class="shakeMe"
+            id="canvas"
+            width="50"
+            height="50"
+          ></canvas>
+          <h4>generated</h4>
+        </div>
+
+        <!-- svg -->
+        <div class="item">
+          <h3>SVG</h3>
+          <div id="svg" class="shakeMe">
+            <svg width="50" height="50">
+              <rect x="0" y="0" width="50" height="50" fill="white" />
+              <line
+                x1="25"
+                y1="0"
+                x2="25"
+                y2="50"
+                style="stroke: red; stroke-width: 10"
+              />
+              <line
+                x1="0"
+                y1="25"
+                x2="50"
+                y2="25"
+                style="stroke: red; stroke-width: 10"
+              />
+            </svg>
+          </div>
+          <h4>generated</h4>
+        </div>
+
+        <!-- jpg -->
+        <div class="item">
+          <h3>JPG</h3>
+          <img
+            id="jpg"
+            class="shakeMe"
+            src="redPlus.jpg"
+            width="50"
+            height="50"
+          />
+          <h4>redPlus.jpg</h4>
+        </div>
+
+        <!-- png -->
+        <div class="item">
+          <h3>PNG</h3>
+          <img
+            id="png"
+            class="shakeMe"
+            src="redPlus.png"
+            width="50"
+            height="50"
+          />
+          <h4>redPlus.png</h4>
+        </div>
+
+        <!-- gif -->
+        <div class="item">
+          <h3>GIF</h3>
+          <img
+            id="gif"
+            class="shakeMe"
+            src="redPlus.gif"
+            width="50"
+            height="50"
+          />
+          <h4>redPlus.gif</h4>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // draw canvas +
+      let canvas = document.getElementById("canvas");
+      let context = canvas.getContext("2d");
+      let centerX = canvas.width / 2;
+      let centerY = canvas.height / 2;
+      context.fillStyle = "white";
+      context.fillRect(0, 0, 50, 50);
+      context.fillStyle = "red";
+      context.fillRect(centerX - 5, 0, 10, 50);
+      context.fillRect(0, centerY - 5, 50, 10);
+
+      // wire up shaking
+      let shakeButton = document.getElementById("shakeButton");
+      // screen shake
+      shakeButton.addEventListener("click", () => {
+        document.getElementsByTagName("body")[0].classList.add("shake-slow");
+        document
+          .getElementsByTagName("body")[0]
+          .classList.add("shake-constant");
+        setTimeout(clearBodyShake, 700);
+      });
+      // image shake
+      document.querySelectorAll(".shakeMe").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          document
+            .getElementById(e.currentTarget.id)
+            .classList.add("shake-slow");
+          document
+            .getElementById(e.currentTarget.id)
+            .classList.add("shake-constant");
+        });
+      });
+
+      function clearBodyShake() {
+        document.getElementsByTagName("body")[0].classList.remove("shake-slow");
+        document
+          .getElementsByTagName("body")[0]
+          .classList.remove("shake-constant");
+      }
+    </script>
+
+    <style>
+      .box.flex {
+        display: flex;
+        justify-content: center;
+      }
+      .item {
+        padding: 50px;
+      }
+      body {
+        background-color: black;
+      }
+      #container {
+        text-align: center;
+        background-image: url(bluePlaid.jpg);
+        color: white;
+        height: 100vw;
+        width: 100vw;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graphics</title>
+  </head>
+  <body>
+    <div class="box flex">
+      <!-- canvas -->
+      <div class="item">
+        <h3>CANVAS</h3>
+        <canvas id="canvas" width="50" height="50"></canvas>
+        <h4>generated</h4>
+      </div>
+
+      <!-- svg -->
+      <div class="item">
+        <h3>SVG</h3>
+        <svg width="50" height="50">
+          <rect x="0" y="0" width="50" height="50" fill="white"/>
+          <line
+            x1="25"
+            y1="0"
+            x2="25"
+            y2="50"
+            style="stroke: red; stroke-width: 10"
+          />
+          <line
+            x1="0"
+            y1="25"
+            x2="50"
+            y2="25"
+            style="stroke: red; stroke-width: 10"
+          />
+        </svg>
+        <h4>generated</h4>
+      </div>
+
+      <!-- jpg -->
+      <div class="item">
+        <h3>JPG</h3>
+        <img src="redPlus.jpg" width="50" height="50" />
+        <h4>redPlus.jpg</h4>
+      </div>
+
+      <!-- png -->
+      <div class="item">
+        <h3>PNG</h3>
+        <img src="redPlus.png" width="50" height="50" />
+        <h4>redPlus.png</h4>
+      </div>
+
+      <!-- gif -->
+      <div class="item">
+        <h3>GIF</h3>
+        <img src="redPlus.gif" width="50" height="50" />
+        <h4>redPlus.gif</h4>
+      </div>
+    </div>
+
+    <script>
+      // draw canvas +
+      let canvas = document.getElementById("canvas");
+      let context = canvas.getContext("2d");
+      let centerX = canvas.width / 2;
+      let centerY = canvas.height / 2;
+      context.fillStyle = "white";
+      context.fillRect(0, 0, 50, 50);
+      context.fillStyle = "red";
+      context.fillRect(centerX - 5, 0, 10, 50);
+      context.fillRect(0, centerY - 5, 50, 10);
+    </script>
+
+    <style>
+      .box.flex {
+        display: flex;
+        justify-content: center;
+      }
+      .item {
+        padding: 50px;
+      }
+      body {
+        text-align: center;
+        background-image: url(bluePlaid.jpg);
+        color: white;
+      }
+    </style>
+  </body>
+</html>
